@@ -18,22 +18,39 @@ public class SOMSClient {
             Scanner scanner = new Scanner(System.in);
             String command;
 
-            do {
-                System.out.println("Enter a command (or 'exit' to quit): ");
-                command = scanner.nextLine();
+            // Read server's welcome message
+            System.out.println(reader.readLine());
 
-                writer.println(command);  // Send the command to the server
+            // Send username
+            System.out.print("Enter your username: ");
+            String username = scanner.nextLine();
+            writer.println(username);
 
-                if (command.equalsIgnoreCase("exit")) {
-                    System.out.println("Exiting...");
-                    break;
-                }
+            // Handle new user case
+            String serverResponse = reader.readLine();
+            if (serverResponse.contains("Buyer or Seller")) {
+                System.out.println(serverResponse);
+                String role = scanner.nextLine();
+                writer.println(role);
+            }
 
-                // Receive and display the server's response
+            // Main interaction loop
+            while (true) {
+                serverResponse = reader.readLine();
+                System.out.println(serverResponse);  // Display server's prompt
+
+                command = scanner.nextLine();  // Get user input
+                writer.println(command);  // Send command to server
+
+                // Read server's response
                 String response = reader.readLine();
                 System.out.println("Server response: " + response);
-            } while (true);
 
+                // Exit if command was "exit"
+                if (command.equalsIgnoreCase("exit")) {
+                    break;
+                }
+            }
         } catch (IOException ex) {
             System.out.println("Client exception: " + ex.getMessage());
             ex.printStackTrace();

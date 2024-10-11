@@ -1,0 +1,6 @@
+{"users": [{
+    "role": "buyer",
+    "credits": 100,
+    "transactions": [],
+    "username": "buyer1"
+}]}
