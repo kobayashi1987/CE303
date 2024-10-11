@@ -4,8 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-// json-20240303.jar : JSON JAR VERSION
+import java.util.Date;
 
 public class SOMSServer {
     private static final int PORT = 12345;
@@ -34,12 +33,50 @@ public class SOMSServer {
         try {
             String content = new String(Files.readAllBytes(Paths.get(DATABASE_FILE)));
             database = new JSONObject(content);
+
+            // If items list is empty, add some default items
+            if (database.getJSONArray("items").length() == 0) {
+                addDefaultItems();
+            }
         } catch (IOException ex) {
             System.out.println("Error loading database: " + ex.getMessage());
             database = new JSONObject();
-            database.put("users", new JSONArray());  // Initialize with an empty array
+            database.put("users", new JSONArray());
+            database.put("items", new JSONArray());
+            database.put("transactions", new JSONArray());
+            addDefaultItems();  // Add default items if database is empty
         }
     }
+
+    // Add some default items to the item list
+    private static void addDefaultItems() {
+        JSONArray items = database.getJSONArray("items");
+
+        JSONObject item1 = new JSONObject();
+        item1.put("itemName", "Laptop");
+        item1.put("price", 1000);
+        item1.put("quantity", 5);
+        item1.put("seller", "seller1");
+
+        JSONObject item2 = new JSONObject();
+        item2.put("itemName", "Headphones");
+        item2.put("price", 150);
+        item2.put("quantity", 10);
+        item2.put("seller", "seller1");
+
+        JSONObject item3 = new JSONObject();
+        item3.put("itemName", "Smartphone");
+        item3.put("price", 800);
+        item3.put("quantity", 3);
+        item3.put("seller", "seller1");
+
+        items.put(item1);
+        items.put(item2);
+        items.put(item3);
+
+        saveDatabase();  // Save the updated database with the new items
+    }
+
 
     // Save the database to the JSON file
     private static void saveDatabase() {
@@ -62,13 +99,13 @@ public class SOMSServer {
             // Check if user exists or add new user
             JSONObject user = getUser(username);
             if (user == null) {
-                writer.println("You are a new user. Are you a Buyer or Seller?");
+                writer.println("You are a new user. Are you a Customer or Seller?");
                 String role = reader.readLine();
                 user = new JSONObject();
                 user.put("username", username);
                 user.put("role", role.toLowerCase());
-                user.put("credits", 100);  // Give default credits
-                user.put("transactions", new JSONArray());
+                user.put("credits", 1000);  // Give default credits
+                user.put(role.equals("customer") ? "purchaseHistory" : "transactionHistory", new JSONArray());
                 database.getJSONArray("users").put(user);
                 saveDatabase();  // Save the new user to the database
             } else {
@@ -78,7 +115,7 @@ public class SOMSServer {
             // Main interaction loop
             String command;
             do {
-                writer.println("Enter a command (view credits, buy, sell, exit): ");
+                writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, exit): ");
                 command = reader.readLine();
 
                 switch (command.toLowerCase()) {
@@ -86,49 +123,140 @@ public class SOMSServer {
                         writer.println("Your current credits: " + user.getInt("credits"));
                         break;
 
-                    case "buy":
-                        if (user.getString("role").equals("buyer")) {
-                            writer.println("Enter item to buy: ");
-                            String item = reader.readLine();
-                            writer.println("Enter quantity: ");
-                            int quantity = Integer.parseInt(reader.readLine());
-
-                            // Simulate a purchase and deduct credits
-                            int cost = quantity * 10;  // Assume each item costs 10 units
-                            int credits = user.getInt("credits");
-                            if (credits >= cost) {
-                                user.put("credits", credits - cost);
-                                writer.println("Purchase successful. Item: " + item + ", Quantity: " + quantity);
-                                JSONObject transaction = new JSONObject();
-                                transaction.put("item", item);
-                                transaction.put("quantity", quantity);
-                                transaction.put("cost", cost);
-                                user.getJSONArray("transactions").put(transaction);
-                                saveDatabase();
-                            } else {
-                                writer.println("Insufficient credits!");
-                            }
+                    case "view items":
+                        writer.println("Available items:");
+                        JSONArray items = database.getJSONArray("items");
+                        if (items.length() == 0) {
+                            writer.println("No items available.");
                         } else {
-                            writer.println("You are not a buyer.");
+                            for (int i = 0; i < items.length(); i++) {
+                                JSONObject item = items.getJSONObject(i);
+                                writer.println(item.getString("itemName") + " - Price: " + item.getInt("price") +
+                                        ", Quantity: " + item.getInt("quantity"));
+                            }
                         }
+                        writer.println("");  // Send an empty line to indicate end of the item list
+                        break;
+
+                    case "buy":
+                        if (user.getString("role").equals("customer")) {
+                            // writer.println("Enter item to buy: ");  // Prompt for item name
+                            String itemName = reader.readLine();  // Read item name from client
+                            writer.println("You are going to buy: " + itemName);  // Prompt for item name
+
+                            // Check if item exists in the inventory
+                            JSONObject item = findItem(itemName);
+                            if (item == null) {
+                                writer.println("Item not found.");
+                                break;
+                            }
+
+                            //writer.println("Enter quantity: ");  // Prompt for quantity
+                            int quantity = Integer.parseInt(reader.readLine());  // Read quantity from client
+                            writer.println("The quantity you buy is: " + quantity); // Prompt for quantity
+
+                            // Check if the requested quantity is available
+                            if (quantity > item.getInt("quantity")) {
+                                writer.println("Not enough stock available.");
+                                break;
+                            }
+
+                            // Calculate total price
+                            int totalPrice = item.getInt("price") * quantity;
+
+                            // Check if the user has enough credits to make the purchase
+                            if (user.getInt("credits") < totalPrice) {
+                                writer.println("Insufficient credits to complete the purchase.");
+                                break;
+                            }
+
+                            // Deduct credits from the buyer and reserve the purchase (transaction remains pending)
+                            user.put("credits", user.getInt("credits") - totalPrice);
+                            item.put("quantity", item.getInt("quantity") - quantity);  // Deduct the item quantity
+
+                            // Create a new pending transaction
+                            JSONObject transaction = new JSONObject();
+                            transaction.put("itemName", itemName);
+                            transaction.put("quantity", quantity);
+                            transaction.put("buyer", username);
+                            transaction.put("seller", item.getString("seller"));
+                            transaction.put("status", "pending");
+                            transaction.put("date", new Date().toString());
+
+                            database.getJSONArray("transactions").put(transaction);  // Add transaction to the database
+                            saveDatabase();  // Save the updated data
+
+                            writer.println("Purchase successful. Money reserved. Waiting for seller to fulfill the order.");
+                        } else {
+                            writer.println("You are not a customer.");
+                        }
+                        // Now send a new command prompt after the purchase is successful
+                        writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, exit): ");
                         break;
 
                     case "sell":
                         if (user.getString("role").equals("seller")) {
-                            writer.println("Enter item to sell: ");
-                            String item = reader.readLine();
+                            writer.println("Enter item name to sell: ");
+                            String itemName = reader.readLine();
+                            writer.println("Enter price per item: ");
+                            int price = Integer.parseInt(reader.readLine());
                             writer.println("Enter quantity: ");
                             int quantity = Integer.parseInt(reader.readLine());
-                            writer.println("Item listed for sale. Item: " + item + ", Quantity: " + quantity);
-                            // Seller logic can be expanded to track items sold, etc.
+
+                            JSONObject newItem = new JSONObject();
+                            newItem.put("itemName", itemName);
+                            newItem.put("price", price);
+                            newItem.put("quantity", quantity);
+                            newItem.put("seller", username);
+                            database.getJSONArray("items").put(newItem);
+
+                            writer.println("Item listed for sale.");
+                            saveDatabase();
                         } else {
                             writer.println("You are not a seller.");
                         }
                         break;
 
+                    case "top up":
+                        // writer.println("Enter amount to top up: ");  // Prompt for top-up amount
+                        int topUpAmount = Integer.parseInt(reader.readLine());  // Read top-up amount from client
+
+                        // Update user's credit balance
+                        user.put("credits", user.getInt("credits") + topUpAmount);
+                        writer.println("Credits topped up. New balance: " + user.getInt("credits"));
+                        saveDatabase();  // Save the updated data
+                        break;
+
+                    case "view history":
+                        // If the user is a customer, show their purchase history
+                        JSONArray transactions = database.getJSONArray("transactions");
+                        JSONArray history = new JSONArray();
+
+                        for (int i = 0; i < transactions.length(); i++) {
+                            JSONObject transaction = transactions.getJSONObject(i);
+                            if (transaction.getString("buyer").equals(username)) {
+                                history.put(transaction);  // Add to the customer's history
+                            }
+                        }
+
+                        if (history.length() == 0) {
+                            writer.println("No history available.");
+                        } else {
+                            for (int i = 0; i < history.length(); i++) {
+                                JSONObject transaction = history.getJSONObject(i);
+                                writer.println("Item: " + transaction.getString("itemName") +
+                                        ", Quantity: " + transaction.getInt("quantity") +
+                                        ", Date: " + transaction.getString("date") +
+                                        ", Status: " + transaction.getString("status"));
+                            }
+                        }
+                        writer.println("");  // Send empty line to indicate end of history
+                        break;
+
                     case "exit":
                         writer.println("Goodbye!");
-                        break;
+                        socket.close();  // Close the socket and end the client connection
+                        break;  // Exit the loop and close the connection properly
 
                     default:
                         writer.println("Invalid command.");
@@ -148,6 +276,18 @@ public class SOMSServer {
             JSONObject user = users.getJSONObject(i);
             if (user.getString("username").equals(username)) {
                 return user;
+            }
+        }
+        return null;
+    }
+
+    // Find item in the JSON database
+    private static JSONObject findItem(String itemName) {
+        JSONArray items = database.getJSONArray("items");
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject item = items.getJSONObject(i);
+            if (item.getString("itemName").equals(itemName)) {
+                return item;
             }
         }
         return null;

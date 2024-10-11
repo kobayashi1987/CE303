@@ -1,6 +1,270 @@
-{"users": [{
-    "role": "buyer",
-    "credits": 100,
-    "transactions": [],
-    "username": "buyer1"
-}]}
+{
+    "transactions": [
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 19:49:30 SGT 2024",
+            "itemName": "Headphones",
+            "quantity": 1,
+            "buyer": "buyer02",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 19:53:05 SGT 2024",
+            "itemName": "Headphones",
+            "quantity": 1,
+            "buyer": "jack",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 19:57:13 SGT 2024",
+            "itemName": "Headphones",
+            "quantity": 1,
+            "buyer": "peter",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:05:21 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 5,
+            "buyer": "paul",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:10:11 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 2,
+            "buyer": "jack01",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:16:00 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 2,
+            "buyer": "jack02",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:22:00 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "jack03",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:29:59 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 2,
+            "buyer": "jack03",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:33:06 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "jack05",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:46:31 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "jack08",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:46:46 SGT 2024",
+            "itemName": "Headphones",
+            "quantity": 1,
+            "buyer": "jack08",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:54:43 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "jack09",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 20:58:15 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "jack10",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 11 21:01:25 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 2,
+            "buyer": "jack11",
+            "status": "pending"
+        }
+    ],
+    "items": [
+        {
+            "seller": "seller1",
+            "itemName": "Laptop",
+            "quantity": 32,
+            "price": 100
+        },
+        {
+            "seller": "seller1",
+            "itemName": "Headphones",
+            "quantity": 6,
+            "price": 150
+        },
+        {
+            "seller": "seller1",
+            "itemName": "Smartphone",
+            "quantity": 3,
+            "price": 800
+        },
+        {
+            "seller": "seller1",
+            "itemName": "Laptop",
+            "quantity": 2,
+            "price": 50
+        }
+    ],
+    "users": [
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 200,
+            "username": "buyer1"
+        },
+        {
+            "role": "seller",
+            "credits": 0,
+            "transactionHistory": [],
+            "username": "seller1"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 10100,
+            "username": "customer01"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 850,
+            "username": "buyer02"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 850,
+            "username": "jack"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 10850,
+            "username": "peter"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 500,
+            "username": "paul"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 800,
+            "username": "jack01"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 20802,
+            "username": "jack02"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 134934,
+            "username": "jack03"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 1000,
+            "username": "jack04"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 900,
+            "username": "jack05"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 121213121,
+            "username": "jack06"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 12122212,
+            "username": "jack07"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 12123874,
+            "username": "jack08"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 900,
+            "username": "jack09"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 16623,
+            "username": "jack10"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 911,
+            "username": "jack11"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 13345,
+            "username": "jack12"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 9888,
+            "username": "jack13"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 1000,
+            "username": "jack14"
+        }
+    ]
+}
