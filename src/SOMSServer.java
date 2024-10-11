@@ -5,11 +5,15 @@ import org.json.JSONObject;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class SOMSServer {
     private static final int PORT = 12345;
     private static final String DATABASE_FILE = "soms_database.json";
     private static JSONObject database;
+    private static final AtomicInteger clientCounter = new AtomicInteger(1); // Unique ID generator
+    private static JSONArray loggedInClients = new JSONArray();  // List of currently logged-in clients
 
     public static void main(String[] args) {
         loadDatabase();  // Load the JSON database at the beginning
@@ -93,8 +97,14 @@ public class SOMSServer {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
 
-            writer.println("Welcome! Enter your username: ");
+            // newly added code stars here:
+            int clientId = clientCounter.getAndIncrement();  // Generate a unique client ID
+            writer.println("Welcome! Your Client ID: " + clientId);
+            // newly added code ends here
+            writer.println("Enter your username: ");
             String username = reader.readLine();
+            System.out.println("New user joint: " + username); // To show new user joined
+            System.out.println("now total user number is: " + getTotalUsers());  // To show total user number
 
             // Check if user exists or add new user
             JSONObject user = getUser(username);
@@ -292,4 +302,11 @@ public class SOMSServer {
         }
         return null;
     }
+
+
+    // Add a method to get the total number of users
+    private static int getTotalUsers() {
+        return database.getJSONArray("users").length();
+    }
+
 }

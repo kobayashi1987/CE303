@@ -19,7 +19,9 @@ public class SOMSClient {
             String command;
 
             // Initial interaction with server to enter username
-            System.out.println(reader.readLine());  // "Welcome! Enter your username:"
+            System.out.println(reader.readLine());  // "Welcome! Your Client ID is:"
+            System.out.println(reader.readLine());  // "Enter your username:"
+
             String username = scanner.nextLine();
             writer.println(username);  // Send username to server
 

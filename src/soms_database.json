@@ -265,6 +265,37 @@
             "role": "customer",
             "credits": 1000,
             "username": "jack14"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 100,
+            "username": ""
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 57789,
+            "username": "jack15"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 11222133,
+            "username": "jack20"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 1000,
+            "username": "jack21"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 102010,
+            "username": "jack25"
         }
     ]
 }
