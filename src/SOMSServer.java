@@ -157,7 +157,6 @@ public class SOMSServer {
                     writer.println("Enter a command (sell, view items, view history, view clients, exit): ");
                 }
                 // newly added code ends here
-
                 command = reader.readLine();
 
                 switch (command.toLowerCase()) {
@@ -307,11 +306,23 @@ public class SOMSServer {
                         break;
                     // newly added code ends here
 
+//                    case "exit":
+//                        writer.println("Goodbye!");
+//                        loggedInClients = removeLoggedInClient(clientId);  // Remove the client from the list
+//                        socket.close();  // Close the socket and end the client connection
+//                        break;  // Exit the loop and close the connection properly
+
+                    // newly added Case "exit" starts here:
                     case "exit":
                         writer.println("Goodbye!");
                         loggedInClients = removeLoggedInClient(clientId);  // Remove the client from the list
-                        socket.close();  // Close the socket and end the client connection
-                        break;  // Exit the loop and close the connection properly
+                        socket.close();
+
+                        // Display on server that a client has disconnected
+                        System.out.println("Client disconnected: ID = " + clientId + ", Username = " + username);
+                        System.out.println("Currently online clients: " + loggedInClients.length());
+                        return;
+                    // newly added Case "exit" ends here
 
                     default:
                         writer.println("Invalid command.");

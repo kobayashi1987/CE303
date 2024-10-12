@@ -407,6 +407,18 @@
             "role": "customer",
             "credits": 1000,
             "username": "buyer6"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer11"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer12"
         }
     ]
 }
