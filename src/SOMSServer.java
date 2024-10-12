@@ -57,26 +57,40 @@ public class SOMSServer {
         JSONArray items = database.getJSONArray("items");
 
         JSONObject item1 = new JSONObject();
-        item1.put("itemName", "Laptop");
-        item1.put("price", 1000);
-        item1.put("quantity", 5);
+        item1.put("itemName", "item1");
+        item1.put("price", 100);
+        item1.put("quantity", 500);
         item1.put("seller", "seller1");
 
         JSONObject item2 = new JSONObject();
-        item2.put("itemName", "Headphones");
-        item2.put("price", 150);
-        item2.put("quantity", 10);
+        item2.put("itemName", "item2");
+        item2.put("price", 15);
+        item2.put("quantity", 1000);
         item2.put("seller", "seller1");
 
         JSONObject item3 = new JSONObject();
-        item3.put("itemName", "Smartphone");
-        item3.put("price", 800);
-        item3.put("quantity", 3);
+        item3.put("itemName", "item3");
+        item3.put("price", 80);
+        item3.put("quantity", 300);
         item3.put("seller", "seller1");
+
+        JSONObject item4 = new JSONObject();
+        item4.put("itemName", "item4");
+        item4.put("price", 200);
+        item4.put("quantity", 200);
+        item4.put("seller", "seller1");
+
+        JSONObject item5 = new JSONObject();
+        item5.put("itemName", "item5");
+        item5.put("price", 50);
+        item5.put("quantity", 100);
+        item5.put("seller", "seller1");
 
         items.put(item1);
         items.put(item2);
         items.put(item3);
+        items.put(item4);
+        items.put(item5);
 
         saveDatabase();  // Save the updated database with the new items
     }
@@ -152,7 +166,7 @@ public class SOMSServer {
                         break;
 
                     case "view items":
-                        writer.println("Available items:");
+                        //writer.println("Available items:");
                         JSONArray items = database.getJSONArray("items");
                         if (items.length() == 0) {
                             writer.println("No items available.");

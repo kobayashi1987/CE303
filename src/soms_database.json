@@ -173,6 +173,12 @@
             "itemName": "Laptop",
             "quantity": 1,
             "price": 50
+        },
+        {
+            "seller": "seller3",
+            "itemName": "item1",
+            "quantity": 1,
+            "price": 10
         }
     ],
     "users": [
@@ -371,6 +377,36 @@
             "credits": 1000,
             "transactionHistory": [],
             "username": "jack29"
+        },
+        {
+            "role": "seller",
+            "credits": 1000,
+            "transactionHistory": [],
+            "username": "seller3"
+        },
+        {
+            "role": "seller",
+            "credits": 1000,
+            "transactionHistory": [],
+            "username": "seller4"
+        },
+        {
+            "role": "seller",
+            "credits": 1000,
+            "transactionHistory": [],
+            "username": "seller5"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer5"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer6"
         }
     ]
 }
