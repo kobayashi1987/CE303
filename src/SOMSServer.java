@@ -119,13 +119,31 @@ public class SOMSServer {
                 database.getJSONArray("users").put(user);
                 saveDatabase();  // Save the new user to the database
             } else {
+                user.put("clientId", clientId);  // Assign client ID if not already present
                 writer.println("Welcome back, " + username + " (" + user.getString("role") + ")");
             }
+
+            // newly added code starts here:
+            // Add client info to the logged-in clients list
+            JSONObject loggedInClient = new JSONObject();
+            loggedInClient.put("clientId", clientId);
+            loggedInClient.put("username", username);
+            loggedInClient.put("role", user.getString("role"));
+            loggedInClients.put(loggedInClient);
+            // newly added code ends here
 
             // Main interaction loop
             String command;
             do {
-                writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, exit): ");
+                //writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, exit): ");
+                // newly added code starts here:
+                if (user.getString("role").equals("customer")) {
+                    writer.println("Enter a command (view credits, buy, view items, top up, view history, view clients, exit): ");
+                } else {
+                    writer.println("Enter a command (sell, view items, view history, view clients, exit): ");
+                }
+                // newly added code ends here
+
                 command = reader.readLine();
 
                 switch (command.toLowerCase()) {
@@ -195,7 +213,6 @@ public class SOMSServer {
 
                             database.getJSONArray("transactions").put(transaction);  // Add transaction to the database
                             saveDatabase();  // Save the updated data
-
                             writer.println("Purchase successful. Money reserved. Waiting for seller to fulfill the order.");
                         } else {
                             writer.println("You are not a customer.");
@@ -206,11 +223,11 @@ public class SOMSServer {
 
                     case "sell":
                         if (user.getString("role").equals("seller")) {
-                            writer.println("Enter item name to sell: ");
+                            //writer.println("Enter item name to sell: ");
                             String itemName = reader.readLine();
-                            writer.println("Enter price per item: ");
+                            // writer.println("Enter price per item: ");
                             int price = Integer.parseInt(reader.readLine());
-                            writer.println("Enter quantity: ");
+                            //writer.println("Enter quantity: ");
                             int quantity = Integer.parseInt(reader.readLine());
 
                             JSONObject newItem = new JSONObject();
@@ -263,8 +280,22 @@ public class SOMSServer {
                         writer.println("");  // Send empty line to indicate end of history
                         break;
 
+                    // newly added code starts here:
+                    case "view clients":
+                        writer.println("Currently logged-in clients:");
+                        for (int i = 0; i < loggedInClients.length(); i++) {
+                            JSONObject client = loggedInClients.getJSONObject(i);
+                            writer.println("Client ID: " + client.getInt("clientId") +
+                                    ", Username: " + client.getString("username") +
+                                    ", Role: " + client.getString("role"));
+                        }
+                        writer.println("");  // End of client list
+                        break;
+                    // newly added code ends here
+
                     case "exit":
                         writer.println("Goodbye!");
+                        loggedInClients = removeLoggedInClient(clientId);  // Remove the client from the list
                         socket.close();  // Close the socket and end the client connection
                         break;  // Exit the loop and close the connection properly
 
@@ -277,6 +308,18 @@ public class SOMSServer {
         } catch (IOException ex) {
             System.out.println("Error in client interaction: " + ex.getMessage());
         }
+    }
+
+    // Remove a client from the logged-in clients list when they exit
+    private static JSONArray removeLoggedInClient(int clientId) {
+        JSONArray updatedClients = new JSONArray();
+        for (int i = 0; i < loggedInClients.length(); i++) {
+            JSONObject client = loggedInClients.getJSONObject(i);
+            if (client.getInt("clientId") != clientId) {
+                updatedClients.put(client);
+            }
+        }
+        return updatedClients;
     }
 
     // Find user in the JSON database

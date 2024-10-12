@@ -43,10 +43,20 @@ public class SOMSClient {
                 command = scanner.nextLine();
                 writer.println(command);  // Send command to server
 
+//                if (command.equalsIgnoreCase("exit")) {
+//                    System.out.println(reader.readLine());  // "Goodbye!"
+//                    break;
+//                }
+
+                // New Exit Case Client Side
                 if (command.equalsIgnoreCase("exit")) {
-                    System.out.println(reader.readLine());  // "Goodbye!"
+                    System.out.println(reader.readLine()); // Goodbye! message from server
+                    socket.close();
+                    System.out.println("Client disconnected.");
+                    System.exit(0);
                     break;
                 }
+
 
                 switch (command.toLowerCase()) {
                     case "view credits":
@@ -75,7 +85,6 @@ public class SOMSClient {
 
                         // Wait for the server to prompt for quantity
                         serverResponse = reader.readLine();
-
                         System.out.println("Server response: " + serverResponse);  // Should print "Enter quantity"
 
                         // Enter the quantity
@@ -135,6 +144,19 @@ public class SOMSClient {
                             System.out.println(serverResponse);  // Print each transaction line
                         }
                         break;
+
+                    // newly added code "View Clients" added here
+                    case "view clients":
+                        System.out.println("Currently logged-in clients:");
+                        while (true) {
+                            serverResponse = reader.readLine();
+                            if (serverResponse == null || serverResponse.equals("")) {
+                                break;
+                            }
+                            System.out.println(serverResponse);
+                        }
+                        break;
+                     // newly added code "View Clients" added here
 
                     case "exit":
                         writer.println("exit");
