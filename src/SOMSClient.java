@@ -29,6 +29,23 @@ public class SOMSClient {
             String serverResponse = reader.readLine();
             System.out.println(serverResponse);
 
+            // new user registration
+            String serverResponse_for_new_user_registration = reader.readLine();
+            System.out.println(serverResponse_for_new_user_registration);
+
+            // top seller
+            // Read and display each line from the server about the top sellers
+            while (true) {
+                String serverResponse_topSeller = reader.readLine(); // Read each line sent by the server
+                if (serverResponse_topSeller == null || serverResponse_topSeller.trim().isEmpty()) {
+                    break;  // Break when an empty line or null is received, indicating end of top sellers list
+                }
+                System.out.println(serverResponse_topSeller);  // Print each line (top seller details)
+            }
+
+
+
+
             if (serverResponse.contains("Customer or Seller")) {
                 String role = scanner.nextLine();
                 writer.println(role);  // Send chosen role to server

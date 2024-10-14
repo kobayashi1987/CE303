@@ -41,7 +41,7 @@
             "status": "pending"
         },
         {
-            "seller": "seller1",
+            "seller": "seller3",
             "date": "Fri Oct 11 20:16:00 SGT 2024",
             "itemName": "Laptop",
             "quantity": 2,
@@ -49,7 +49,7 @@
             "status": "pending"
         },
         {
-            "seller": "seller1",
+            "seller": "seller2",
             "date": "Fri Oct 11 20:22:00 SGT 2024",
             "itemName": "Laptop",
             "quantity": 1,
@@ -81,7 +81,7 @@
             "status": "pending"
         },
         {
-            "seller": "seller1",
+            "seller": "seller2",
             "date": "Fri Oct 11 20:46:46 SGT 2024",
             "itemName": "Headphones",
             "quantity": 1,
@@ -89,7 +89,7 @@
             "status": "pending"
         },
         {
-            "seller": "seller1",
+            "seller": "seller2",
             "date": "Fri Oct 11 20:54:43 SGT 2024",
             "itemName": "Laptop",
             "quantity": 1,
@@ -105,7 +105,7 @@
             "status": "pending"
         },
         {
-            "seller": "seller1",
+            "seller": "seller3",
             "date": "Fri Oct 11 21:01:25 SGT 2024",
             "itemName": "Laptop",
             "quantity": 2,
@@ -121,7 +121,7 @@
             "status": "pending"
         },
         {
-            "seller": "seller1",
+            "seller": "seller5",
             "date": "Sat Oct 12 21:41:57 SGT 2024",
             "itemName": "Smartphone",
             "quantity": 2,
@@ -129,7 +129,7 @@
             "status": "pending"
         },
         {
-            "seller": "seller1",
+            "seller": "seller4",
             "date": "Sat Oct 12 21:57:21 SGT 2024",
             "itemName": "Laptop",
             "quantity": 2,
@@ -139,13 +139,13 @@
     ],
     "items": [
         {
-            "seller": "seller1",
+            "seller": "seller2",
             "itemName": "Laptop",
             "quantity": 29,
             "price": 100
         },
         {
-            "seller": "seller1",
+            "seller": "seller3",
             "itemName": "Headphones",
             "quantity": 6,
             "price": 150
@@ -411,7 +411,8 @@
         {
             "purchaseHistory": [],
             "role": "customer",
-            "credits": 1000,
+            "clientId": 1,
+            "credits": 12233342,
             "username": "buyer11"
         },
         {
@@ -419,6 +420,121 @@
             "role": "customer",
             "credits": 1000,
             "username": "buyer12"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 11122212,
+            "username": "buyer21"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "clientId": 2,
+            "credits": 1333334333,
+            "username": "buyer22"
+        },
+        {
+            "purchaseHistory": [],
+            "role": "customer",
+            "credits": 11213121,
+            "username": "buyer23"
+        },
+        {
+            "role": "enter your username: ",
+            "credits": 1000,
+            "transactionHistory": [],
+            "username": "Welcome! Your Client ID: 1"
+        },
+        {
+            "role": "enter your username: ",
+            "credits": 1000,
+            "transactionHistory": [],
+            "username": "Welcome! Your Client ID: 2"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 0,
+            "username": "buyer31"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer32"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer35"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 2,
+            "role": "customer",
+            "credits": 11232231,
+            "username": "buyer36"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer37"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer38"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer39"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer40"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer41"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer42"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer43"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer44"
         }
     ]
 }

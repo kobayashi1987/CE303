@@ -6,7 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
-
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class SOMSServer {
     private static final int PORT = 12345;
@@ -23,7 +25,6 @@ public class SOMSServer {
 
             while (true) {
                 Socket socket = serverSocket.accept();
-                System.out.println("New client connected");
                 handleClient(socket);
             }
         } catch (IOException ex) {
@@ -37,64 +38,14 @@ public class SOMSServer {
         try {
             String content = new String(Files.readAllBytes(Paths.get(DATABASE_FILE)));
             database = new JSONObject(content);
-
-            // If items list is empty, add some default items
-            if (database.getJSONArray("items").length() == 0) {
-                addDefaultItems();
-            }
         } catch (IOException ex) {
             System.out.println("Error loading database: " + ex.getMessage());
             database = new JSONObject();
             database.put("users", new JSONArray());
             database.put("items", new JSONArray());
             database.put("transactions", new JSONArray());
-            addDefaultItems();  // Add default items if database is empty
         }
     }
-
-    // Add some default items to the item list
-    private static void addDefaultItems() {
-        JSONArray items = database.getJSONArray("items");
-
-        JSONObject item1 = new JSONObject();
-        item1.put("itemName", "item1");
-        item1.put("price", 100);
-        item1.put("quantity", 500);
-        item1.put("seller", "seller1");
-
-        JSONObject item2 = new JSONObject();
-        item2.put("itemName", "item2");
-        item2.put("price", 15);
-        item2.put("quantity", 1000);
-        item2.put("seller", "seller1");
-
-        JSONObject item3 = new JSONObject();
-        item3.put("itemName", "item3");
-        item3.put("price", 80);
-        item3.put("quantity", 300);
-        item3.put("seller", "seller1");
-
-        JSONObject item4 = new JSONObject();
-        item4.put("itemName", "item4");
-        item4.put("price", 200);
-        item4.put("quantity", 200);
-        item4.put("seller", "seller1");
-
-        JSONObject item5 = new JSONObject();
-        item5.put("itemName", "item5");
-        item5.put("price", 50);
-        item5.put("quantity", 100);
-        item5.put("seller", "seller1");
-
-        items.put(item1);
-        items.put(item2);
-        items.put(item3);
-        items.put(item4);
-        items.put(item5);
-
-        saveDatabase();  // Save the updated database with the new items
-    }
-
 
     // Save the database to the JSON file
     private static void saveDatabase() {
@@ -111,40 +62,44 @@ public class SOMSServer {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
 
-            // newly added code stars here:
             int clientId = clientCounter.getAndIncrement();  // Generate a unique client ID
             writer.println("Welcome! Your Client ID: " + clientId);
-            // newly added code ends here
             writer.println("Enter your username: ");
             String username = reader.readLine();
-            System.out.println("New user joint: " + username); // To show new user joined
-            System.out.println("now total user number is: " + getTotalUsers());  // To show total user number
 
             // Check if user exists or add new user
             JSONObject user = getUser(username);
+            // If user doesn't exist, register them
             if (user == null) {
-                writer.println("You are a new user. Are you a Customer or Seller?");
-                String role = reader.readLine();
+                writer.println("You are a new user. Registering with 1000 credits.");
                 user = new JSONObject();
+                user.put("clientId", clientId);  // Assign client ID
                 user.put("username", username);
-                user.put("role", role.toLowerCase());
-                user.put("credits", 1000);  // Give default credits
-                user.put(role.equals("customer") ? "purchaseHistory" : "transactionHistory", new JSONArray());
+                user.put("role", "customer");  // Default role is customer for new users
+                user.put("credits", 1000);  // New users start with 0 credits
+                user.put("purchaseHistory", new JSONArray());  // No history for new users
                 database.getJSONArray("users").put(user);
                 saveDatabase();  // Save the new user to the database
+                writer.println("Registration complete. Your starting credits are 1000.");
+                // Show the command options immediately after registration
+                writer.println("Enter a command (view credits, buy, view items, top up, view history, view clients, exit): ");
             } else {
-                user.put("clientId", clientId);  // Assign client ID if not already present
                 writer.println("Welcome back, " + username + " (" + user.getString("role") + ")");
             }
 
-            // newly added code starts here:
             // Add client info to the logged-in clients list
             JSONObject loggedInClient = new JSONObject();
             loggedInClient.put("clientId", clientId);
             loggedInClient.put("username", username);
             loggedInClient.put("role", user.getString("role"));
             loggedInClients.put(loggedInClient);
-            // newly added code ends here
+
+            // Display on server that a client has connected
+            System.out.println("Client connected: ID = " + clientId + ", Username = " + username);
+            System.out.println("Currently online clients: " + loggedInClients.length());
+
+             //Show the top 5 sellers by number of transactions upon login
+             showTopSellers(writer);
 
             // Main interaction loop
             String command;
@@ -375,6 +330,50 @@ public class SOMSServer {
     // Add a method to get the total number of users
     private static int getTotalUsers() {
         return database.getJSONArray("users").length();
+    }
+
+
+    // Show the top 5 sellers based on number of completed transactions (sales fulfilled)
+    private static void showTopSellers(PrintWriter writer) {
+        JSONArray transactions = database.getJSONArray("transactions");
+        // Count the number of completed transactions per seller
+        JSONObject sellerTransactionCount = new JSONObject();
+
+        // Iterate over all transactions and only count those that are "fulfilled"
+        for (int i = 0; i < transactions.length(); i++) {
+            JSONObject transaction = transactions.getJSONObject(i);
+            String seller = transaction.getString("seller");
+            String status = transaction.getString("status");
+
+            // Count only fulfilled (completed) transactions
+            if (status.equals("pending")) {
+                if (!sellerTransactionCount.has(seller)) {
+                    sellerTransactionCount.put(seller, 0);
+                }
+                sellerTransactionCount.put(seller, sellerTransactionCount.getInt(seller) + 1);
+            }
+        }
+
+        // Create a list of sellers to sort by completed transactions
+        List<JSONObject> sellerList = new ArrayList<>();
+        sellerTransactionCount.keySet().forEach(seller -> {
+            JSONObject sellerObj = new JSONObject();
+            sellerObj.put("seller", seller);
+            sellerObj.put("transactions", sellerTransactionCount.getInt(seller));
+            sellerList.add(sellerObj);
+        });
+
+        // Sort sellers by number of completed transactions in descending order
+        sellerList.sort(Comparator.comparingInt(s -> -s.getInt("transactions")));
+
+        // Display the top 5 sellers
+        writer.println("Top 5 Sellers (by completed sales transactions):");
+        for (int i = 0; i < Math.min(5, sellerList.size()); i++) {
+            JSONObject seller = sellerList.get(i);
+            writer.println((i + 1) + ". Seller: " + seller.getString("seller") +
+                    " - Completed Transactions: " + seller.getInt("transactions"));
+        }
+        writer.println("");  // End of top sellers list
     }
 
 }
