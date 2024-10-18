@@ -2,539 +2,249 @@
     "transactions": [
         {
             "seller": "seller1",
-            "date": "Fri Oct 11 19:49:30 SGT 2024",
-            "itemName": "Headphones",
-            "quantity": 1,
-            "buyer": "buyer02",
-            "status": "pending"
-        },
-        {
-            "seller": "seller1",
-            "date": "Fri Oct 11 19:53:05 SGT 2024",
-            "itemName": "Headphones",
-            "quantity": 1,
-            "buyer": "jack",
-            "status": "pending"
-        },
-        {
-            "seller": "seller1",
-            "date": "Fri Oct 11 19:57:13 SGT 2024",
-            "itemName": "Headphones",
-            "quantity": 1,
-            "buyer": "peter",
-            "status": "pending"
-        },
-        {
-            "seller": "seller1",
-            "date": "Fri Oct 11 20:05:21 SGT 2024",
+            "date": "2023-10-10",
             "itemName": "Laptop",
-            "quantity": 5,
-            "buyer": "paul",
-            "status": "pending"
-        },
-        {
-            "seller": "seller1",
-            "date": "Fri Oct 11 20:10:11 SGT 2024",
-            "itemName": "Laptop",
-            "quantity": 2,
-            "buyer": "jack01",
-            "status": "pending"
-        },
-        {
-            "seller": "seller3",
-            "date": "Fri Oct 11 20:16:00 SGT 2024",
-            "itemName": "Laptop",
-            "quantity": 2,
-            "buyer": "jack02",
-            "status": "pending"
+            "quantity": 1,
+            "buyer": "customer1",
+            "status": "fulfilled"
         },
         {
             "seller": "seller2",
-            "date": "Fri Oct 11 20:22:00 SGT 2024",
-            "itemName": "Laptop",
-            "quantity": 1,
-            "buyer": "jack03",
-            "status": "pending"
-        },
-        {
-            "seller": "seller1",
-            "date": "Fri Oct 11 20:29:59 SGT 2024",
-            "itemName": "Laptop",
-            "quantity": 2,
-            "buyer": "jack03",
-            "status": "pending"
-        },
-        {
-            "seller": "seller1",
-            "date": "Fri Oct 11 20:33:06 SGT 2024",
-            "itemName": "Laptop",
-            "quantity": 1,
-            "buyer": "jack05",
-            "status": "pending"
-        },
-        {
-            "seller": "seller1",
-            "date": "Fri Oct 11 20:46:31 SGT 2024",
-            "itemName": "Laptop",
-            "quantity": 1,
-            "buyer": "jack08",
-            "status": "pending"
-        },
-        {
-            "seller": "seller2",
-            "date": "Fri Oct 11 20:46:46 SGT 2024",
+            "date": "2023-10-11",
             "itemName": "Headphones",
-            "quantity": 1,
-            "buyer": "jack08",
-            "status": "pending"
+            "quantity": 2,
+            "buyer": "customer2",
+            "status": "fulfilled"
         },
         {
-            "seller": "seller2",
-            "date": "Fri Oct 11 20:54:43 SGT 2024",
+            "seller": "seller1",
+            "date": "Fri Oct 18 20:43:28 SGT 2024",
             "itemName": "Laptop",
             "quantity": 1,
-            "buyer": "jack09",
+            "buyer": "buyer1",
             "status": "pending"
         },
         {
             "seller": "seller1",
-            "date": "Fri Oct 11 20:58:15 SGT 2024",
+            "date": "Fri Oct 18 20:48:04 SGT 2024",
             "itemName": "Laptop",
-            "quantity": 1,
-            "buyer": "jack10",
-            "status": "pending"
-        },
-        {
-            "seller": "seller3",
-            "date": "Fri Oct 11 21:01:25 SGT 2024",
-            "itemName": "Laptop",
-            "quantity": 2,
-            "buyer": "jack11",
+            "quantity": 3,
+            "buyer": "buyer2",
             "status": "pending"
         },
         {
             "seller": "seller1",
-            "date": "Sat Oct 12 21:41:32 SGT 2024",
+            "date": "Fri Oct 18 20:56:34 SGT 2024",
             "itemName": "Laptop",
             "quantity": 1,
-            "buyer": "jack27",
+            "buyer": "buyer1",
             "status": "pending"
         },
         {
-            "seller": "seller5",
-            "date": "Sat Oct 12 21:41:57 SGT 2024",
-            "itemName": "Smartphone",
-            "quantity": 2,
-            "buyer": "jack27",
-            "status": "pending"
-        },
-        {
-            "seller": "seller4",
-            "date": "Sat Oct 12 21:57:21 SGT 2024",
+            "seller": "seller1",
+            "date": "Fri Oct 18 20:59:23 SGT 2024",
             "itemName": "Laptop",
-            "quantity": 2,
-            "buyer": "jack24",
+            "quantity": 1,
+            "buyer": "buer1",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 18 20:59:50 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "buyer1",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 18 21:00:53 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "buer1",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 18 21:02:18 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "buyer1",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 18 21:38:07 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "buyer1",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 18 21:40:54 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "buyer1",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 18 23:06:23 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "jack2",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 18 23:10:26 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "buyer10",
+            "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Fri Oct 18 23:48:13 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "buyer11",
             "status": "pending"
         }
     ],
     "items": [
         {
-            "seller": "seller2",
+            "seller": "seller1",
             "itemName": "Laptop",
-            "quantity": 29,
+            "quantity": 486,
             "price": 100
         },
         {
-            "seller": "seller3",
+            "seller": "seller2",
             "itemName": "Headphones",
-            "quantity": 6,
-            "price": 150
+            "quantity": 1000,
+            "price": 15
         },
         {
-            "seller": "seller1",
-            "itemName": "Smartphone",
-            "quantity": 1,
-            "price": 800
-        },
-        {
-            "seller": "seller1",
+            "seller": "buyer26",
             "itemName": "Laptop",
             "quantity": 2,
-            "price": 50
-        },
-        {
-            "seller": "jack28",
-            "itemName": "Laptop",
-            "quantity": 2,
-            "price": 50
-        },
-        {
-            "seller": "jack29",
-            "itemName": "Laptop",
-            "quantity": 1,
-            "price": 50
-        },
-        {
-            "seller": "seller3",
-            "itemName": "item1",
-            "quantity": 1,
             "price": 10
         }
     ],
     "users": [
         {
             "purchaseHistory": [],
+            "clientId": 1,
             "role": "customer",
-            "credits": 200,
-            "username": "buyer1"
+            "credits": 5000,
+            "username": "customer1"
         },
         {
+            "purchaseHistory": [],
+            "clientId": 2,
+            "role": "customer",
+            "credits": 4000,
+            "username": "customer2"
+        },
+        {
+            "clientId": 3,
             "role": "seller",
-            "credits": 0,
+            "credits": 3000,
             "transactionHistory": [],
             "username": "seller1"
         },
         {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 10100,
-            "username": "customer01"
+            "clientId": 4,
+            "role": "seller",
+            "credits": 2500,
+            "transactionHistory": [],
+            "username": "seller2"
         },
         {
             "purchaseHistory": [],
+            "clientId": 1,
             "role": "customer",
-            "credits": 850,
-            "username": "buyer02"
+            "credits": 256456623,
+            "username": "buyer1"
         },
         {
             "purchaseHistory": [],
+            "clientId": 2,
             "role": "customer",
-            "credits": 850,
-            "username": "jack"
+            "credits": 700,
+            "username": "buyer2"
         },
         {
             "purchaseHistory": [],
-            "role": "customer",
-            "credits": 10850,
-            "username": "peter"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 500,
-            "username": "paul"
-        },
-        {
-            "purchaseHistory": [],
+            "clientId": 1,
             "role": "customer",
             "credits": 800,
-            "username": "jack01"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 20802,
-            "username": "jack02"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 134934,
-            "username": "jack03"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 1000,
-            "username": "jack04"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 900,
-            "username": "jack05"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 121213121,
-            "username": "jack06"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 12122212,
-            "username": "jack07"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 12123874,
-            "username": "jack08"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 900,
-            "username": "jack09"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 16623,
-            "username": "jack10"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 911,
-            "username": "jack11"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 13345,
-            "username": "jack12"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 9888,
-            "username": "jack13"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 1000,
-            "username": "jack14"
+            "username": "buer1"
         },
         {
             "purchaseHistory": [],
             "clientId": 1,
             "role": "customer",
-            "credits": 100,
-            "username": ""
+            "credits": 1000,
+            "username": "buyer123"
         },
         {
             "purchaseHistory": [],
-            "role": "customer",
-            "credits": 57789,
-            "username": "jack15"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 11222133,
-            "username": "jack20"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 808081808,
-            "username": "jack21"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "clientId": 2,
-            "credits": 102011,
-            "username": "jack25"
-        },
-        {
-            "purchaseHistory": [],
+            "clientId": 3,
             "role": "customer",
             "credits": 1000,
-            "username": "jack22"
+            "username": "jack1"
         },
         {
             "purchaseHistory": [],
-            "role": "customer",
-            "clientId": 5,
-            "credits": 1181614,
-            "username": "jack27"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 111911,
-            "username": "jack24"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "clientId": 4,
-            "credits": 1000,
-            "username": "jack26"
-        },
-        {
-            "role": "seller",
-            "credits": 1000,
-            "transactionHistory": [],
-            "username": "jack28"
-        },
-        {
-            "role": "seller",
-            "credits": 1000,
-            "transactionHistory": [],
-            "username": "jack29"
-        },
-        {
-            "role": "seller",
-            "credits": 1000,
-            "transactionHistory": [],
-            "username": "seller3"
-        },
-        {
-            "role": "seller",
-            "credits": 1000,
-            "transactionHistory": [],
-            "username": "seller4"
-        },
-        {
-            "role": "seller",
-            "credits": 1000,
-            "transactionHistory": [],
-            "username": "seller5"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer5"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer6"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
             "clientId": 1,
-            "credits": 12233342,
+            "role": "customer",
+            "credits": 2122112,
+            "username": "jack2"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1212124088,
+            "username": "buyer10"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 124889,
             "username": "buyer11"
         },
         {
             "purchaseHistory": [],
+            "clientId": 1,
             "role": "customer",
             "credits": 1000,
-            "username": "buyer12"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 11122212,
-            "username": "buyer21"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "clientId": 2,
-            "credits": 1333334333,
-            "username": "buyer22"
-        },
-        {
-            "purchaseHistory": [],
-            "role": "customer",
-            "credits": 11213121,
-            "username": "buyer23"
-        },
-        {
-            "role": "enter your username: ",
-            "credits": 1000,
-            "transactionHistory": [],
-            "username": "Welcome! Your Client ID: 1"
-        },
-        {
-            "role": "enter your username: ",
-            "credits": 1000,
-            "transactionHistory": [],
-            "username": "Welcome! Your Client ID: 2"
+            "username": "buyer19"
         },
         {
             "purchaseHistory": [],
             "clientId": 1,
             "role": "customer",
+            "credits": 1000,
+            "username": "buyer25"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 2,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buer2"
+        },
+        {
+            "clientId": 4,
+            "role": "seller",
             "credits": 0,
-            "username": "buyer31"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer32"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer35"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 2,
-            "role": "customer",
-            "credits": 11232231,
-            "username": "buyer36"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer37"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer38"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer39"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer40"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer41"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer42"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer43"
-        },
-        {
-            "purchaseHistory": [],
-            "clientId": 1,
-            "role": "customer",
-            "credits": 1000,
-            "username": "buyer44"
+            "transactionHistory": [],
+            "username": "buyer26"
         }
     ]
 }
