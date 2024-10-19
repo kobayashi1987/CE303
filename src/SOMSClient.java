@@ -205,24 +205,43 @@ public class SOMSClient {
 
             // Login response from the server (successful or failure)
             serverResponse = reader.readLine();
-            System.out.println("Server response_test: " + serverResponse);
+            System.out.println("Server response123: " + serverResponse);
 
-            // Insert this block to display the top 5 sellers for existing clients
-//            while (true) {
-//                serverResponse = reader.readLine();  // Read each seller's info from the server
-//                if (serverResponse == null || serverResponse.trim().isEmpty()) {
-//                    break;  // Exit the loop when an empty line is received, indicating the end of the seller list
-//                }
-//                System.out.println(serverResponse);  // Print each line (seller details)
-//            }
+//            System.out.println(reader.readLine());  // "Enter your role: "
+//            String role = scanner.nextLine();
+//            writer.println(role);  // Send role to server
 
+            if (serverResponse.contains("Login successful")) {
+                while (true) {
+                    serverResponse = reader.readLine();  // Read each seller from the server
+                    if (serverResponse == null || serverResponse.trim().isEmpty()) {
+                        break;  // Exit loop when no more sellers are sent
+                    }
+                    System.out.println(serverResponse);
+                }
 
-
-            if (serverResponse.contains("Invalid")) {
+            } else if (serverResponse.contains("Registering as a new user.")) {
+                System.out.println(reader.readLine());  // "Enter your role: "
+                String role = scanner.nextLine();
+                writer.println(role);  // Send role to server
+            } else if (serverResponse.contains("Invalid")) {
                 System.out.println("Login failed. Exiting...");
                 return;
             }
 
+            serverResponse = reader.readLine();  // Server sends command prompt
+            System.out.println("serviceResponse102 _ after else if:" + serverResponse);
+
+
+             //Display Top 5 Sellers if the user is a Customer
+            System.out.println("Top 5 Sellers (by completed sales transactions_FROM CLIENT SIDE):");
+            while (true) {
+                serverResponse = reader.readLine();  // Read each seller from the server
+                if (serverResponse == null || serverResponse.trim().isEmpty()) {
+                    break;  // Exit loop when no more sellers are sent
+                }
+                System.out.println(serverResponse);
+            }
 
 
             // Role-specific menu based on user type (Customer or Seller)
@@ -233,11 +252,6 @@ public class SOMSClient {
 
                 String command = scanner.nextLine();
                 writer.println(command);  // Send command to server
-
-
-
-
-
 
                 if (command.equalsIgnoreCase("exit")) {
                     serverResponse = reader.readLine();  // "Goodbye!"

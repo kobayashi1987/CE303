@@ -86,7 +86,6 @@ public class SOMSServer {
     private static void handleClient(Socket socket) {
         int clientId = -1;
         String userID = "";
-
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
 
@@ -99,29 +98,47 @@ public class SOMSServer {
             writer.println("Enter your password: ");
             String password = reader.readLine();
 
-            // Check if user exists in the credentials file
+            // Check if the user is already registered
             JSONObject existingUser = getCredential(userID);
             if (existingUser != null) {
-                // Check password
                 if (existingUser.getString("password").equals(password)) {
                     writer.println("Login successful! Welcome back.");
-                    // Show top 5 sellers if the user is a customerç
+
+                    // Only show top sellers if the user is a customer
                     JSONObject user = getUserByID(userID);
-                    if (user != null && user.getString("role").equals("customer")) {
-                        showTopSellers(writer);  // Show top 5 sellers
+                    if (user.getString("role").equals("customer")) {
+                        writer.println("Top 5 Sellers (by completed sales transactions_FROM SERVER SIDE):");
+                        showTopSellers(writer);  // Send top sellers to the client
                     }
+
                 } else {
                     writer.println("Invalid password. Connection closed.");
                     socket.close();
                     return;
                 }
             } else {
-                // Register new user
+                // If user does not exist, register as a new user
                 writer.println("No account found. Registering as a new user.");
                 writer.println("Are you a Customer or Seller? (Enter 'customer' or 'seller')");
                 String role = reader.readLine().trim().toLowerCase();  // Read user role
+
+                if (!role.equals("customer") && !role.equals("seller")) {
+                    writer.println("Invalid role. Please enter 'customer' or 'seller'.");
+                    socket.close();
+                    return;
+                }
+
+                // Register new user with the chosen role
                 registerNewUser(userID, password, clientId, writer, role);
-                // showTopSellers(writer);  // Show top 5 sellers for new customers
+
+                // Confirm registration and proceed with customer flow
+                writer.println("Registration complete. You are registered as a " + role + ".");
+
+                // Only show top sellers if the new user is a customer
+                if (role.equals("customer")) {
+                    writer.println("Top 5 Sellers (by completed sales transactions from SERVER SIDE):");
+                    showTopSellers(writer);  // Send top sellers to the client
+                }
             }
 
             // Retrieve the user details to check their role
@@ -480,7 +497,7 @@ public class SOMSServer {
         sellerList.sort(Comparator.comparingInt(s -> -s.getInt("transactions")));
 
         // Display the top 5 sellers
-        writer.println("Top 5 Sellers (by completed sales transactions):");
+        writer.println("Top 5 Sellers (by completed sales transactions_FROM INSIDE SHOW TOP SELLER FUNCTION):");
         for (int i = 0; i < Math.min(5, sellerList.size()); i++) {
             JSONObject seller = sellerList.get(i);
             writer.println((i + 1) + ". Seller: " + seller.getString("seller") +
