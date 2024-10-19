@@ -329,6 +329,34 @@
             "role": "customer",
             "credits": 1000,
             "username": "buyer48"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer49"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer50"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1232499,
+            "username": "buyer51"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1231232488,
+            "username": "buyer52"
         }
     ]
 }

@@ -497,7 +497,7 @@ public class SOMSServer {
         sellerList.sort(Comparator.comparingInt(s -> -s.getInt("transactions")));
 
         // Display the top 5 sellers
-        writer.println("Top 5 Sellers (by completed sales transactions_FROM INSIDE SHOW TOP SELLER FUNCTION):");
+        //writer.println("Top 5 Sellers (by completed sales transactions_FROM INSIDE SHOW TOP SELLER FUNCTION):");
         for (int i = 0; i < Math.min(5, sellerList.size()); i++) {
             JSONObject seller = sellerList.get(i);
             writer.println((i + 1) + ". Seller: " + seller.getString("seller") +
