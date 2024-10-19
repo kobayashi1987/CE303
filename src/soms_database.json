@@ -111,13 +111,21 @@
             "quantity": 1,
             "buyer": "buyer11",
             "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Sat Oct 19 23:30:06 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "buyer1",
+            "status": "pending"
         }
     ],
     "items": [
         {
             "seller": "seller1",
             "itemName": "Laptop",
-            "quantity": 486,
+            "quantity": 485,
             "price": 100
         },
         {
@@ -130,6 +138,12 @@
             "seller": "buyer26",
             "itemName": "Laptop",
             "quantity": 2,
+            "price": 10
+        },
+        {
+            "seller": "seller7",
+            "itemName": "item1",
+            "quantity": 10,
             "price": 10
         }
     ],
@@ -166,7 +180,7 @@
             "purchaseHistory": [],
             "clientId": 1,
             "role": "customer",
-            "credits": 379579746,
+            "credits": 379579646,
             "username": "buyer1"
         },
         {
@@ -357,6 +371,20 @@
             "role": "customer",
             "credits": 1231232488,
             "username": "buyer52"
+        },
+        {
+            "clientId": 2,
+            "role": "seller",
+            "credits": 0,
+            "transactionHistory": [],
+            "username": "seller7"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 2,
+            "role": "customer",
+            "credits": 1000,
+            "username": "buyer53"
         }
     ]
 }

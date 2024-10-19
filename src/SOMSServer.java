@@ -342,11 +342,11 @@ public class SOMSServer {
                     switch (command.toLowerCase()) {
 
                         case "sell":
-                            writer.println("Enter item name to sell: ");
+                            writer.println("Enter item name to sell_FROM SERVER: ");
                             String itemName = reader.readLine();
-                            writer.println("Enter price per item: ");
+                            writer.println("Enter price per item_FROM SERVER: ");
                             int price = Integer.parseInt(reader.readLine());
-                            writer.println("Enter quantity: ");
+                            writer.println("Enter quantity_FROM SERVER: ");
                             int quantity = Integer.parseInt(reader.readLine());
 
                             // Add item to the database
