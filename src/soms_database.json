@@ -145,6 +145,18 @@
             "itemName": "item1",
             "quantity": 10,
             "price": 10
+        },
+        {
+            "seller": "jack02",
+            "itemName": "Laptop",
+            "quantity": 2,
+            "price": 100
+        },
+        {
+            "seller": "seller11",
+            "itemName": "Laptop",
+            "quantity": 2,
+            "price": 12
         }
     ],
     "users": [
@@ -180,7 +192,7 @@
             "purchaseHistory": [],
             "clientId": 1,
             "role": "customer",
-            "credits": 379579646,
+            "credits": 379679646,
             "username": "buyer1"
         },
         {
@@ -385,6 +397,48 @@
             "role": "customer",
             "credits": 1000,
             "username": "buyer53"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 123142231,
+            "username": "jack01"
+        },
+        {
+            "clientId": 2,
+            "role": "seller",
+            "credits": 0,
+            "transactionHistory": [],
+            "username": "jack02"
+        },
+        {
+            "clientId": 1,
+            "role": "seller",
+            "credits": 0,
+            "transactionHistory": [],
+            "username": "jack03"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 1000,
+            "username": "jack04"
+        },
+        {
+            "clientId": 1,
+            "role": "seller",
+            "credits": 0,
+            "transactionHistory": [],
+            "username": "seller11"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 1,
+            "role": "customer",
+            "credits": 133123,
+            "username": "buyer101"
         }
     ]
 }

@@ -218,35 +218,40 @@ public class SOMSClient {
                 }
 
             } else if (serverResponse.contains("Registering as a new user.")) {
-                System.out.println(reader.readLine());  // "Enter your role: "
-                String role = scanner.nextLine();
-                writer.println(role);  // Send role to server
-                serverResponse = reader.readLine();  // Server sends command prompt
-                System.out.println("serviceResponse102 _ inside else if of CLIENT SIDE:" + serverResponse);
-                //Display Top 5 Sellers if the user is a Customer
-                //System.out.println("Top 5 Sellers (by completed sales transactions_FROM CLIENT SIDE):");
-                if (role.equalsIgnoreCase("Customer")) {
-                    System.out.println("Top 5 Sellers (by completed sales transactions) FROM CLIENT SIDE Else IF:");
-                    while (true) {
-                        serverResponse = reader.readLine();  // Read each seller from the server
-                        if (serverResponse == null || serverResponse.trim().isEmpty()) {
-                            break;  // Exit loop when no more sellers are sent
+                    System.out.println(reader.readLine());  // "Enter your role: "
+                    String role = scanner.nextLine();
+                    writer.println(role);  // Send role to server
+                    serverResponse = reader.readLine();  // Server sends command prompt
+                    System.out.println("serviceResponse102 _ inside else if of CLIENT SIDE:" + serverResponse);
+                    //Display Top 5 Sellers if the user is a Customer
+                    //System.out.println("Top 5 Sellers (by completed sales transactions_FROM CLIENT SIDE):");
+                    if (role.equalsIgnoreCase("Customer")) {
+                        System.out.println("Top 5 Sellers (by completed sales transactions) FROM CLIENT SIDE Else IF:");
+                        while (true) {
+                            serverResponse = reader.readLine();  // Read each seller from the server
+                            if (serverResponse == null || serverResponse.trim().isEmpty()) {
+                                break;  // Exit loop when no more sellers are sent
+                            }
+                            System.out.println(serverResponse);
                         }
-                        System.out.println(serverResponse);
                     }
                 }
-            }
 
-            if (serverResponse.contains("Invalid")) {
-                System.out.println("Login failed. Exiting...");
-                return;
-            }
+                if (serverResponse.contains("Invalid")) {
+                    System.out.println("Login failed. Exiting...");
+                    return;
+                }
 
-            // Role-specific menu based on user type (Customer or Seller)
-            while (true) {
-                serverResponse = reader.readLine();  // Server sends command prompt
-                System.out.println("serviceResponse101_After the IF BLOCK_FROM ClIENT SIDE:" + serverResponse);
+                // Role-specific menu based on user type (Customer or Seller)
+                while (true) {
+                    serverResponse = reader.readLine();  // Server sends command prompt
+                    System.out.println("serviceResponse101_After the IF BLOCK_FROM ClIENT SIDE:" + serverResponse);
 
+                if (userID.contains("seller")){
+                    System.out.println(reader.readLine());  // "Enter your password: "
+                    String command = scanner.nextLine();
+                    writer.println(command);  // Send password to server
+                }
 
                 String command = scanner.nextLine();
                 writer.println(command);  // Send command to server

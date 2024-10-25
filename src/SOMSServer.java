@@ -132,7 +132,7 @@ public class SOMSServer {
                 registerNewUser(userID, password, clientId, writer, role);
 
                 // Confirm registration and proceed with customer flow
-                writer.println("Registration complete. You are registered as a " + role + ".");
+                writer.println("Registration complete. You are registered as a " + role + "." + " from server side");
 
                 // Only show top sellers if the new user is a customer
                 if (role.equals("customer")) {
