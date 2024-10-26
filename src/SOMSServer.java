@@ -339,33 +339,42 @@ public class SOMSServer {
                     writer.println("Enter a command (sell, view items, view history, view clients, exit): ");
                     command = reader.readLine();
                     if (command == null) break;  // Handle unexpected disconnection
+
                     switch (command.toLowerCase()) {
 
                         case "sell":
-                            writer.println("Enter item name to sell_FROM SERVER: ");
-                            String itemName = reader.readLine();
-                            writer.println("Enter price per item_FROM SERVER: ");
-                            int price = Integer.parseInt(reader.readLine());
-                            writer.println("Enter quantity_FROM SERVER: ");
-                            int quantity = Integer.parseInt(reader.readLine());
+                            //writer.println("Enter item name to sell: ");
+                            String itemName = reader.readLine();  // Get item name
+                            //writer.println("Enter price per item: ");
+                            String priceInput = reader.readLine();  // Get price input
+                            //writer.println("Enter quantity: ");
+                            String quantityInput = reader.readLine();  // Get quantity input
 
-                            // Add item to the database
-                            JSONObject newItem = new JSONObject();
-                            newItem.put("itemName", itemName);
-                            newItem.put("price", price);
-                            newItem.put("quantity", quantity);
-                            newItem.put("seller", user.getString("username"));
-                            database.getJSONArray("items").put(newItem);
+                            try {
+                                int price = Integer.parseInt(priceInput);
+                                int quantity = Integer.parseInt(quantityInput);
 
-                            saveDatabase();  // Save the database with the new item
-                            writer.println("Item listed for sale.");
+                                // Add item to the database
+                                JSONObject newItem = new JSONObject();
+                                newItem.put("itemName", itemName);
+                                newItem.put("price", price);
+                                newItem.put("quantity", quantity);
+                                newItem.put("seller", user.getString("username"));
+                                database.getJSONArray("items").put(newItem);
+
+                                saveDatabase();  // Save the updated item database
+                                writer.println("Item listed for sale successfully.");
+
+                            } catch (NumberFormatException e) {
+                                writer.println("Invalid input for price or quantity. Please enter numeric values.");
+                            }
                             break;
-
 
                         case "view items":
                             writer.println("Items you are selling:");
                             JSONArray items = database.getJSONArray("items");
                             boolean hasItems = false;
+
                             for (int i = 0; i < items.length(); i++) {
                                 JSONObject item = items.getJSONObject(i);
                                 if (item.getString("seller").equals(user.getString("username"))) {
@@ -385,6 +394,7 @@ public class SOMSServer {
                             writer.println("Your transaction history:");
                             JSONArray transactions = database.getJSONArray("transactions");
                             boolean hasTransactions = false;
+
                             for (int i = 0; i < transactions.length(); i++) {
                                 JSONObject transaction = transactions.getJSONObject(i);
                                 if (transaction.getString("seller").equals(user.getString("username"))) {
@@ -401,8 +411,6 @@ public class SOMSServer {
                             }
                             writer.println("");  // End of transaction history
                             break;
-
-
 
                         case "view clients":
                             writer.println("Currently logged-in clients:");
@@ -424,13 +432,11 @@ public class SOMSServer {
                             return;
 
                         default:
-                            writer.println("Invalid command.");
+                            writer.println("Invalid command. Please try again.");
                             break;
-
-
                     }
-                } while (!command.equalsIgnoreCase("exit"));
 
+                } while (!command.equalsIgnoreCase("exit"));
             }
             writer.println("Goodbye!");
 
