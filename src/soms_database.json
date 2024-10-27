@@ -159,13 +159,69 @@
             "quantity": 1,
             "buyer": "buyer59",
             "status": "pending"
+        },
+        {
+            "seller": "seller1",
+            "date": "Sun Oct 27 22:15:21 SGT 2024",
+            "itemName": "Laptop",
+            "quantity": 1,
+            "buyer": "buer2",
+            "status": "pending"
+        },
+        {
+            "seller": "seller7",
+            "date": "Sun Oct 27 22:17:31 SGT 2024",
+            "itemName": "item1",
+            "quantity": 1,
+            "buyer": "buer2",
+            "status": "pending"
+        },
+        {
+            "seller": "seller15",
+            "date": "Sun Oct 27 22:37:47 SGT 2024",
+            "itemName": "item2",
+            "quantity": 2,
+            "buyer": "buyer2",
+            "status": "pending"
+        },
+        {
+            "seller": "seller15",
+            "date": "Sun Oct 27 22:38:26 SGT 2024",
+            "itemName": "item2",
+            "quantity": 2,
+            "buyer": "buyer2",
+            "status": "pending"
+        },
+        {
+            "seller": "seller7",
+            "date": "Sun Oct 27 22:39:54 SGT 2024",
+            "itemName": "item1",
+            "quantity": 1,
+            "buyer": "buyer2",
+            "status": "pending"
+        },
+        {
+            "seller": "seller7",
+            "date": "Sun Oct 27 22:44:29 SGT 2024",
+            "itemName": "item1",
+            "quantity": 1,
+            "buyer": "buyer2",
+            "status": "pending"
+        },
+        {
+            "seller": "seller15",
+            "date": "Sun Oct 27 22:45:16 SGT 2024",
+            "itemName": "item2",
+            "quantity": 1,
+            "buyer": "buyer 63",
+            "status": "pending"
         }
     ],
     "items": [
         {
             "seller": "seller1",
             "itemName": "Laptop",
-            "quantity": 483,
+            "quantity": 482,
             "price": 100
         },
         {
@@ -183,7 +239,7 @@
         {
             "seller": "seller7",
             "itemName": "item1",
-            "quantity": 10,
+            "quantity": 7,
             "price": 10
         },
         {
@@ -213,7 +269,7 @@
         {
             "seller": "seller15",
             "itemName": "item2",
-            "quantity": 101,
+            "quantity": 96,
             "price": 10
         },
         {
@@ -245,6 +301,48 @@
             "itemName": "item28",
             "quantity": 126,
             "price": 28
+        },
+        {
+            "seller": "seller1",
+            "itemName": "item11",
+            "quantity": 12,
+            "price": 123
+        },
+        {
+            "seller": "seller1",
+            "itemName": "item111",
+            "quantity": 1111,
+            "price": 111
+        },
+        {
+            "seller": "seller33",
+            "itemName": "item33",
+            "quantity": 3,
+            "price": 333
+        },
+        {
+            "seller": "seller1",
+            "itemName": "item101",
+            "quantity": 10,
+            "price": 100
+        },
+        {
+            "seller": "seller35",
+            "itemName": "item35",
+            "quantity": 100,
+            "price": 100
+        },
+        {
+            "seller": "seller1",
+            "itemName": "item123",
+            "quantity": 100,
+            "price": 123
+        },
+        {
+            "seller": "seller36",
+            "itemName": "item36",
+            "quantity": 100,
+            "price": 36
         }
     ],
     "users": [
@@ -280,14 +378,14 @@
             "purchaseHistory": [],
             "clientId": 1,
             "role": "customer",
-            "credits": 379678380,
+            "credits": 379678394,
             "username": "buyer1"
         },
         {
             "purchaseHistory": [],
             "clientId": 2,
             "role": "customer",
-            "credits": 700,
+            "credits": 981,
             "username": "buyer2"
         },
         {
@@ -350,7 +448,7 @@
             "purchaseHistory": [],
             "clientId": 2,
             "role": "customer",
-            "credits": 1000,
+            "credits": 894,
             "username": "buer2"
         },
         {
@@ -618,6 +716,48 @@
             "role": "customer",
             "credits": 818,
             "username": "buyer59"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 4,
+            "role": "customer",
+            "credits": 1001,
+            "username": "buyer62"
+        },
+        {
+            "clientId": 1,
+            "role": "seller",
+            "credits": 0,
+            "transactionHistory": [],
+            "username": "seller31"
+        },
+        {
+            "clientId": 1,
+            "role": "seller",
+            "credits": 0,
+            "transactionHistory": [],
+            "username": "seller33"
+        },
+        {
+            "purchaseHistory": [],
+            "clientId": 2,
+            "role": "customer",
+            "credits": 991,
+            "username": "buyer 63"
+        },
+        {
+            "clientId": 5,
+            "role": "seller",
+            "credits": 0,
+            "transactionHistory": [],
+            "username": "seller35"
+        },
+        {
+            "clientId": 8,
+            "role": "seller",
+            "credits": 0,
+            "transactionHistory": [],
+            "username": "seller36"
         }
     ]
 }

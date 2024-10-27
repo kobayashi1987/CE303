@@ -31,9 +31,9 @@ public class SOMSClient {
 
             // Login response from the server (successful or failure)
             serverResponse = reader.readLine();
-            System.out.println("Server response: " + serverResponse);
+            System.out.println("Server response: 101  " + serverResponse);
 
-            if (serverResponse.contains("Login successful")) {
+            if (serverResponse.contains("Login successful") && !userID.contains("seller")) {
                 // Display the top 5 sellers for customers, if applicable
                 while (true) {
                     serverResponse = reader.readLine();
@@ -93,15 +93,34 @@ public class SOMSClient {
                         String itemName = scanner.nextLine();
                         writer.println(itemName);  // Send item name to server
 
-                        serverResponse = reader.readLine();  // Server asks for quantity
-                        System.out.println("Server response: " + serverResponse);
+                        serverResponse = reader.readLine();
+                        System.out.println("Server response: " + serverResponse);  // Either prompt for quantity or item not found
+
+                        if (serverResponse.contains("not found") || serverResponse.contains("Enter a command")) {
+                            break;  // Exit the buy process if item is not found or if server returns to main menu
+                        }
 
                         System.out.println("Enter quantity: ");
                         String quantity = scanner.nextLine();
                         writer.println(quantity);  // Send quantity to server
 
-                        serverResponse = reader.readLine();  // Purchase confirmation
-                        System.out.println("Server response: " + serverResponse);
+                        serverResponse = reader.readLine();
+                        System.out.println("Server response: " + serverResponse);  // Response for invalid quantity or stock availability
+
+                        if (serverResponse.contains("Invalid quantity") || serverResponse.contains("stock")) {
+                            break;  // Exit the buy process if quantity is invalid or insufficient stock
+                        }
+
+                        serverResponse = reader.readLine();
+                        System.out.println("Server response: " + serverResponse);  // Response for insufficient credits or success message
+
+                        if (serverResponse.contains("Insufficient credits")) {
+                            break;  // Exit if not enough credits
+                        }
+
+                        // Final success message and new command prompt
+                        serverResponse = reader.readLine();
+                        System.out.println("Server response: " + serverResponse);  // Confirmation for purchase success and prompt for next command
                         break;
 
                     case "view items":

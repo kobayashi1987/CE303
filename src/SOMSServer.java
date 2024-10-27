@@ -191,39 +191,53 @@ public class SOMSServer {
                             break;
 
                         // Additional commands here...
+                        // Within the handleClient method, in the Customer's command loop
+
+// Inside handleClient method, Customer's case for "buy"
+
                         case "buy":
                             if (user.getString("role").equals("customer")) {
-                                // writer.println("Enter item to buy: ");  // Prompt for item name
+                                writer.println("Enter item name: ");  // Prompt client to enter item name
                                 String itemName = reader.readLine();  // Read item name from client
-                                writer.println("You are going to buy: " + itemName);  // Prompt for item name
 
-                                // Check if item exists in the inventory
-                                JSONObject item = findItem(itemName);
+                                JSONObject item = findItem(itemName);  // Check if the item exists in inventory
                                 if (item == null) {
-                                    writer.println("Item not found.");
+                                    writer.println("Item not found. Please check the item name and try again.");
+                                    writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, view clients, exit): "); // Prompt new command
                                     break;
                                 }
 
-                                //writer.println("Enter quantity: ");  // Prompt for quantity
-                                int quantity = Integer.parseInt(reader.readLine());  // Read quantity from client
-                                writer.println("The quantity you buy is: " + quantity); // Prompt for quantity
+                                writer.println("Enter quantity: ");  // Prompt for quantity
+                                String quantityStr = reader.readLine();
 
-                                // Check if the requested quantity is available
+                                int quantity;
+                                try {
+                                    quantity = Integer.parseInt(quantityStr);  // Parse the quantity
+                                } catch (NumberFormatException e) {
+                                    writer.println("Invalid quantity. Please enter a numeric value.");
+                                    writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, view clients, exit): "); // Prompt new command
+                                    break;
+                                }
+
+                                // Check if the quantity requested is available
                                 if (quantity > item.getInt("quantity")) {
-                                    writer.println("Not enough stock available.");
+                                    writer.println("Not enough stock available. Current stock: " + item.getInt("quantity"));
+                                    writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, view clients, exit): "); // Prompt new command
                                     break;
                                 }
 
-                                // Calculate total price
+                                // Calculate the total cost of the requested quantity
                                 int totalPrice = item.getInt("price") * quantity;
 
-                                // Check if the user has enough credits to make the purchase
+                                // Check if the user has enough credits to complete the purchase
                                 if (user.getInt("credits") < totalPrice) {
-                                    writer.println("Insufficient credits to complete the purchase.");
+                                    writer.println("Insufficient credits to complete the purchase. Total required: " + totalPrice +
+                                            ", Your balance: " + user.getInt("credits"));
+                                    writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, view clients, exit): "); // Prompt new command
                                     break;
                                 }
 
-                                // Deduct credits from the buyer and reserve the purchase (transaction remains pending)
+                                // Deduct credits from buyer and reserve the purchase (transaction remains pending)
                                 user.put("credits", user.getInt("credits") - totalPrice);
                                 item.put("quantity", item.getInt("quantity") - quantity);  // Deduct the item quantity
 
@@ -239,11 +253,12 @@ public class SOMSServer {
                                 database.getJSONArray("transactions").put(transaction);  // Add transaction to the database
                                 saveDatabase();  // Save the updated data
                                 writer.println("Purchase successful. Money reserved. Waiting for seller to fulfill the order.");
+
+                                // Prompt for new command after successful purchase
+                                writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, view clients, exit): ");
                             } else {
-                                writer.println("You are not a customer.");
+                                writer.println("You are not authorized to perform this action.");
                             }
-                            // Now send a new command prompt after the purchase is successful
-                            writer.println("Enter a command (view credits, buy, sell, view items, top up, view history, exit): ");
                             break;
 
                         case "sell":
@@ -343,7 +358,7 @@ public class SOMSServer {
                     switch (command.toLowerCase()) {
 
                         case "sell":
-                            //writer.println("Enter item name to sell: ");
+                            // writer.println("Enter item name to sell: ");
                             String itemName = reader.readLine();  // Get item name
                             //writer.println("Enter price per item: ");
                             String priceInput = reader.readLine();  // Get price input
@@ -464,7 +479,7 @@ public class SOMSServer {
         database.getJSONArray("users").put(newUser);
         saveDatabase();
 
-        writer.println("Registration complete. You are registered as a " + role + ".");
+        // writer.println("Registration complete. You are registered as a " + role + ".");
 
     }
 
